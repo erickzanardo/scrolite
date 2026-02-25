@@ -7,6 +7,11 @@ speed = 6
 (2, 24) = minion_1
 (2, 32) = minion_1
 
+(54, 8) = minion_1
+(54, 16) = minion_1
+(54, 24) = minion_1
+(54, 32) = minion_1
+
 [section]
 id = #1
 type = sprite

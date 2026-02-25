@@ -4,6 +4,7 @@ imageFile = sprites.png
 srcSrc = 0, 16
 srcSize = 8, 8
 controller = scrollAndShoot
+hitbox = 2, 1, 4, 4
 
 [minion_2]
 type = sprite
@@ -11,3 +12,4 @@ imageFile = sprites.png
 srcSrc = 8, 16
 srcSize = 8, 8
 controller = scrollAndShoot
+hitbox = 4, 4, 2, 2

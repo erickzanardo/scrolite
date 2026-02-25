@@ -11,12 +11,16 @@ type = sprite
 imageFile = images/sprites.png
 srcSrc = 0, 16
 srcSize = 8, 8
+controller = minionController
+hitbox = 3, 1, 4, 4
 
 [minion_2]
 type = sprite
 imageFile = images/sprites.png
 srcSrc = 8, 16
 srcSize = 8, 8
+controller = minionController
+hitbox = 4, 4, 2, 2
 ''';
 
       final map = GameObject.readObjectMap(raw);
@@ -27,12 +31,15 @@ srcSize = 8, 8
       expect(minion1.spritePath, 'images/sprites.png');
       expect(minion1.srcPosition, Vector2(0, 16));
       expect(minion1.srcSize, Vector2(8, 8));
-
+      expect(minion1.hitbox, (3, 1, 4, 4));
+      expect(minion1.controller, 'minionController');
       expect(map['minion_2'], isA<SpriteGameObject>());
       final minion2 = map['minion_2']! as SpriteGameObject;
       expect(minion2.spritePath, 'images/sprites.png');
       expect(minion2.srcPosition, Vector2(8, 16));
       expect(minion2.srcSize, Vector2(8, 8));
+      expect(minion2.controller, 'minionController');
+      expect(minion2.hitbox, (4, 4, 2, 2));
     });
   });
 }

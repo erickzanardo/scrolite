@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/foundation.dart';
@@ -54,11 +55,24 @@ class ScroliteGame extends FlameGame {
           );
         }
 
+        RectangleHitbox? hitbox;
+        if (gameObject.hitbox != null) {
+          final hitboxData = gameObject.hitbox!;
+          hitbox = RectangleHitbox(
+            size: Vector2(hitboxData.$3.toDouble(), hitboxData.$4.toDouble()),
+            position: Vector2(
+              hitboxData.$1.toDouble(),
+              hitboxData.$2.toDouble(),
+            ),
+          )..debugMode = kDebugMode;
+        }
+
         if (gameObject is SpriteGameObject) {
           _addSpriteObject(
             gameObject: gameObject,
             controller: controllerBuilder(),
             x: nextObject.$1.toDouble(),
+            hitbox: hitbox,
           );
         } else {
           throw ArgumentError(
@@ -88,6 +102,7 @@ class ScroliteGame extends FlameGame {
     required SpriteGameObject gameObject,
     required Component controller,
     required double x,
+    RectangleHitbox? hitbox,
   }) async {
     final sprite = await loadSprite(
       gameObject.spritePath,
@@ -99,7 +114,10 @@ class ScroliteGame extends FlameGame {
       size: gameObject.srcSize,
       anchor: Anchor.topLeft,
       position: Vector2(x, -gameObject.srcSize.y / 2), // Start above the screen
-      children: [controller],
+      children: [
+        controller,
+        ?hitbox,
+      ],
     );
 
     world.add(spriteComponent);

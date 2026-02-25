@@ -1,9 +1,13 @@
 import 'package:flame/game.dart';
 
 abstract class GameObject {
-  GameObject({required this.controller});
+  GameObject({
+    required this.controller,
+    this.hitbox,
+  });
 
   final String controller;
+  final (int, int, int, int)? hitbox;
 
   static Map<String, GameObject> readObjectMap(String raw) {
     final lines = raw.split('\n');
@@ -48,11 +52,28 @@ abstract class GameObject {
             double.parse(srcSizeParts[1]),
           );
 
+          (int, int, int, int)? hitbox;
+          if (properties.containsKey('hitbox')) {
+            final hitboxParts = properties['hitbox']!
+                .split(',')
+                .map((s) => s.trim())
+                .toList();
+            if (hitboxParts.length == 4) {
+              hitbox = (
+                int.parse(hitboxParts[0]),
+                int.parse(hitboxParts[1]),
+                int.parse(hitboxParts[2]),
+                int.parse(hitboxParts[3]),
+              );
+            }
+          }
+
           objectMap[name] = SpriteGameObject(
             spritePath: spritePath,
             srcPosition: srcPosition,
             srcSize: srcSize,
             controller: controller,
+            hitbox: hitbox,
           );
         }
       }
@@ -68,6 +89,7 @@ class SpriteGameObject extends GameObject {
     required this.srcPosition,
     required this.srcSize,
     required super.controller,
+    super.hitbox,
   });
 
   final String spritePath;
