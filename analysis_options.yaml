@@ -1,0 +1,6 @@
+analyzer:
+  errors:
+    discarded_futures: ignore
+    public_member_api_docs: ignore
+    type_annotate_public_apis: ignore
+include: package:very_good_analysis/analysis_options.yaml

@@ -1,0 +1,44 @@
+[data]
+speed = 6
+
+[section]
+id = #1
+type = sprite
+spritePath = level1/s1.png
+width = 64
+height = 128
+
+[section]
+id = #2
+type = sprite
+spritePath = level1/s2.png
+width = 64
+height = 128
+
+[section]
+id = #3
+type = sprite
+spritePath = level1/s3.png
+width = 64
+height = 128
+
+[section]
+id = #4
+type = sprite
+spritePath = level1/s4.png
+width = 64
+height = 128
+
+[section]
+id = #5
+type = sprite
+spritePath = level1/s5.png
+width = 64
+height = 128
+
+[section]
+id = #6
+type = sprite
+spritePath = level1/s6.png
+width = 64
+height = 128
