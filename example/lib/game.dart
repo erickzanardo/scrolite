@@ -4,8 +4,12 @@ import 'package:flame/events.dart';
 import 'package:scrolite/scrolite.dart';
 
 class MyGame extends ScroliteGame {
-  MyGame({required super.stage, required super.resolution})
-    : super(scrollSpeed: 6);
+  MyGame({
+    required super.stage,
+    required super.objectsMapping,
+    required super.controllersMapping,
+    required super.resolution,
+  }) : super(scrollSpeed: 6);
 
   Vector2? playerTarget;
 

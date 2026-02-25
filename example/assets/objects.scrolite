@@ -1,11 +1,13 @@
 [minion_1]
 type = sprite
-imageFile = images/sprites.png
+imageFile = sprites.png
 srcSrc = 0, 16
 srcSize = 8, 8
+controller = scrollAndShoot
 
 [minion_2]
 type = sprite
-imageFile = images/sprites.png
+imageFile = sprites.png
 srcSrc = 8, 16
 srcSize = 8, 8
+controller = scrollAndShoot

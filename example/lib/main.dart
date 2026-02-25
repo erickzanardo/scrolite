@@ -1,3 +1,4 @@
+import 'package:example/components/components.dart';
 import 'package:example/game.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
@@ -11,9 +12,17 @@ void main() async {
   final stageData = await Flame.assets.readFile('level_data/level_1.scrolite');
   final stage = Stage.fromData(stageData);
 
+  final objectsData = await Flame.assets.readFile('objects.scrolite');
+  final objectsMapping = GameObject.readObjectMap(objectsData);
+
   runApp(
     GameWidget(
-      game: MyGame(stage: stage, resolution: resolution),
+      game: MyGame(
+        stage: stage,
+        objectsMapping: objectsMapping,
+        controllersMapping: {'scrollAndShoot': ScrollAndShoot.new},
+        resolution: resolution,
+      ),
     ),
   );
 }

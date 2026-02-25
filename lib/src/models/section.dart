@@ -2,7 +2,6 @@ import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 
 abstract class Section {
-
   const Section({
     required this.id,
     required this.width,
@@ -17,7 +16,6 @@ abstract class Section {
 }
 
 class SpriteSection extends Section {
-
   const SpriteSection({
     required super.id,
     required super.width,

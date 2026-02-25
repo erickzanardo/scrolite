@@ -4,12 +4,14 @@ class Stage {
   Stage({
     required this.sections,
     required this.scrollSpeed,
+    required this.objects,
   });
 
   factory Stage.fromData(String data) {
     final lines = data.split('\n');
     double? scrollSpeed;
     final sections = <Section>[];
+    final objects = <(int, int, String)>[];
     var currentSection = <String, String>{};
     String? currentGroup;
 
@@ -43,6 +45,21 @@ class Stage {
         currentGroup = line.substring(1, line.length - 1);
         continue;
       }
+      if (currentGroup == 'objects') {
+        // Parse object tuple: (x, y) = name
+        final parts = line.split('=');
+        if (parts.length == 2) {
+          final key = parts[0].trim();
+          final value = parts[1].trim();
+          final match = RegExp(r'\((\d+),\s*(\d+)\)').firstMatch(key);
+          if (match != null) {
+            final x = int.parse(match.group(1)!);
+            final y = int.parse(match.group(2)!);
+            objects.add((x, y, value));
+          }
+        }
+        continue;
+      }
       final parts = line.split('=');
       if (parts.length == 2) {
         final key = parts[0].trim();
@@ -66,9 +83,11 @@ class Stage {
     return Stage(
       sections: sections,
       scrollSpeed: scrollSpeed,
+      objects: objects,
     );
   }
 
   final List<Section> sections;
   final double scrollSpeed;
+  final List<(int, int, String)> objects;
 }

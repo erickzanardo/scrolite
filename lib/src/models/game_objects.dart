@@ -1,6 +1,10 @@
 import 'package:flame/game.dart';
 
 abstract class GameObject {
+  GameObject({required this.controller});
+
+  final String controller;
+
   static Map<String, GameObject> readObjectMap(String raw) {
     final lines = raw.split('\n');
 
@@ -25,6 +29,7 @@ abstract class GameObject {
 
         if (properties['type'] == 'sprite') {
           final spritePath = properties['imageFile']!;
+          final controller = properties['controller']!;
           final srcSrcParts = properties['srcSrc']!
               .split(',')
               .map((s) => s.trim())
@@ -47,6 +52,7 @@ abstract class GameObject {
             spritePath: spritePath,
             srcPosition: srcPosition,
             srcSize: srcSize,
+            controller: controller,
           );
         }
       }
@@ -61,6 +67,7 @@ class SpriteGameObject extends GameObject {
     required this.spritePath,
     required this.srcPosition,
     required this.srcSize,
+    required super.controller,
   });
 
   final String spritePath;

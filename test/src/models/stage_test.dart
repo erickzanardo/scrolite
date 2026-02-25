@@ -8,6 +8,12 @@ void main() {
 [data]
 speed = 6
 
+[objects]
+(2, 32) = minion_1
+(2, 40) = minion_1
+(2, 48) = minion_1
+(2, 56) = minion_1
+
 [section]
 id = #1
 type = sprite
@@ -55,6 +61,24 @@ height = 128
 
       expect(stage.scrollSpeed, 6);
       expect(stage.sections.length, 6);
+
+      expect(stage.objects.length, 4);
+      expect(stage.objects[0].$1, 2);
+      expect(stage.objects[0].$2, 32);
+      expect(stage.objects[0].$3, 'minion_1');
+
+      expect(stage.objects[1].$1, 2);
+      expect(stage.objects[1].$2, 40);
+      expect(stage.objects[1].$3, 'minion_1');
+
+      expect(stage.objects[2].$1, 2);
+      expect(stage.objects[2].$2, 48);
+      expect(stage.objects[2].$3, 'minion_1');
+
+      expect(stage.objects[3].$1, 2);
+      expect(stage.objects[3].$2, 56);
+      expect(stage.objects[3].$3, 'minion_1');
+
       expect(stage.sections[0], isA<SpriteSection>());
       expect((stage.sections[0] as SpriteSection).spritePath, 'images/s1.png');
       expect((stage.sections[0] as SpriteSection).id, '#1');

@@ -1,6 +1,12 @@
 [data]
 speed = 6
 
+[objects]
+(2, 8) = minion_1
+(2, 16) = minion_1
+(2, 24) = minion_1
+(2, 32) = minion_1
+
 [section]
 id = #1
 type = sprite
