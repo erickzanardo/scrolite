@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:example/game.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
-import 'package:flutter/foundation.dart';
 
 class PlayerBullet extends SpriteAnimationComponent
     with HasGameReference<MyGame>, CollisionCallbacks {
@@ -27,10 +26,7 @@ class PlayerBullet extends SpriteAnimationComponent
       ),
     );
 
-    add(
-      RectangleHitbox(size: Vector2.all(4), position: Vector2.all(2))
-        ..debugMode = kDebugMode,
-    );
+    add(RectangleHitbox(size: Vector2.all(4), position: Vector2.all(2)));
   }
 
   @override

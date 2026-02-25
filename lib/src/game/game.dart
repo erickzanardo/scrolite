@@ -64,7 +64,7 @@ class ScroliteGame extends FlameGame {
               hitboxData.$1.toDouble(),
               hitboxData.$2.toDouble(),
             ),
-          )..debugMode = kDebugMode;
+          );
         }
 
         if (gameObject is SpriteGameObject) {
