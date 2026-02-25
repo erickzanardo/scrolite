@@ -12,12 +12,13 @@ class MyGame extends ScroliteGame with HasCollisionDetection {
   }) : super(scrollSpeed: 6);
 
   Vector2? playerTarget;
+  late final Player player;
 
   @override
   Future<void> onLoad() async {
     await super.onLoad();
 
-    world.add(Player());
+    world.add(player = Player());
     world.add(_GameDragArea(size: resolution));
   }
 }
