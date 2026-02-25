@@ -18,7 +18,7 @@ class MyGame extends ScroliteGame {
   }
 }
 
-class _GameDragArea extends PositionComponent 
+class _GameDragArea extends PositionComponent
     with DragCallbacks, HasGameReference<MyGame> {
   _GameDragArea({required super.size}) : super(priority: 20);
 

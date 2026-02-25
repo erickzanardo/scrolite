@@ -1,33 +1,15 @@
 import 'dart:async';
 
+import 'package:example/components/components.dart';
 import 'package:example/game.dart';
 import 'package:flame/components.dart';
 
 class Player extends SpriteComponent with HasGameReference<MyGame> {
-
-  Player({
-    this.speed = 100,
-  }) : super(priority: 20);
+  Player({this.speed = 100}) : super(priority: 20);
 
   final double speed;
 
-  @override
-  void update(double dt) {
-    super.update(dt);
-
-    if (game.playerTarget != null) {
-      final distance = (game.playerTarget! - position).length;
-      if (distance > 1) {
-        final direction = (game.playerTarget! - position).normalized();
-        final newPosition = position + direction * speed * dt;
-        if (newPosition.x < 0 || newPosition.x > game.resolution.x || newPosition.y < 0 || newPosition.y > game.resolution.y) {
-          // Don't move outside the game bounds
-          return;
-        }
-        position = newPosition;
-      }
-    }
-  }
+  late final TimerComponent _shootTimer;
 
   @override
   FutureOr<void> onLoad() async {
@@ -43,5 +25,49 @@ class Player extends SpriteComponent with HasGameReference<MyGame> {
 
     position = game.resolution / 2;
     anchor = Anchor.center;
+
+    add(
+      _shootTimer = TimerComponent(
+        period: 0.5,
+        repeat: true,
+        autoStart: false,
+        onTick: () {
+          game.world.add(
+            PlayerBullet(
+              direction: Vector2(0, -1),
+              speed: 50,
+              position: position.clone() + Vector2(0, -size.y / 2),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  @override
+  void update(double dt) {
+    super.update(dt);
+
+    if (game.playerTarget != null && !_shootTimer.timer.isRunning()) {
+      _shootTimer.timer.start();
+    } else if (game.playerTarget == null && _shootTimer.timer.isRunning()) {
+      _shootTimer.timer.stop();
+    }
+
+    if (game.playerTarget != null) {
+      final distance = (game.playerTarget! - position).length;
+      if (distance > 1) {
+        final direction = (game.playerTarget! - position).normalized();
+        final newPosition = position + direction * speed * dt;
+        if (newPosition.x < 0 ||
+            newPosition.x > game.resolution.x ||
+            newPosition.y < 0 ||
+            newPosition.y > game.resolution.y) {
+          // Don't move outside the game bounds
+          return;
+        }
+        position = newPosition;
+      }
+    }
   }
 }
