@@ -1,4 +1,5 @@
 [minion_1]
+tag = enemy
 type = sprite
 imageFile = sprites.png
 srcSrc = 0, 16
@@ -7,6 +8,7 @@ controller = minion_1
 hitbox = 2, 1, 4, 4
 
 [minion_2]
+tag = enemy
 type = sprite
 imageFile = sprites.png
 srcSrc = 8, 16

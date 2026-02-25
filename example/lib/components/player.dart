@@ -1,10 +1,14 @@
 import 'dart:async';
 
 import 'package:example/components/components.dart';
+import 'package:example/components/enemy_bullet.dart';
 import 'package:example/game.dart';
+import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:scrolite/scrolite.dart';
 
-class Player extends SpriteComponent with HasGameReference<MyGame> {
+class Player extends SpriteComponent
+    with HasGameReference<MyGame>, CollisionCallbacks {
   Player({this.speed = 100}) : super(priority: 20);
 
   final double speed;
@@ -25,6 +29,8 @@ class Player extends SpriteComponent with HasGameReference<MyGame> {
 
     position = game.resolution / 2;
     anchor = Anchor.center;
+
+    add(RectangleHitbox(size: Vector2(4, 4), position: Vector2(2, 2)));
 
     add(
       _shootTimer = TimerComponent(
@@ -68,6 +74,25 @@ class Player extends SpriteComponent with HasGameReference<MyGame> {
         }
         position = newPosition;
       }
+    }
+  }
+
+  @override
+  void onCollisionStart(
+    Set<Vector2> intersectionPoints,
+    PositionComponent other,
+  ) {
+    super.onCollisionStart(intersectionPoints, other);
+
+    if (other is IsEnemyBullet) {
+      other.removeFromParent();
+      game.world.add(Boom(position: position.clone()));
+      removeFromParent();
+    } else if (other is GameObjectComponent &&
+        other.gameObject.tag == 'enemy') {
+      game.world.add(Boom(position: position.clone()));
+      other.removeFromParent();
+      removeFromParent();
     }
   }
 }
