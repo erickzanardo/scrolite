@@ -29,9 +29,8 @@ class Mininon1Controller extends Component
           game.world.add(
             EnemyBullet(
               direction: direction,
-              speed: 10,
-              position:
-                  parent.position.clone() + Vector2(0, -parent.size.y / 2),
+              speed: 20,
+              position: parent.position.clone() + Vector2(4, parent.size.y / 2),
             ),
           );
         },

@@ -7,10 +7,15 @@ speed = 6
 (2, 24) = minion_1
 (2, 32) = minion_1
 
-(54, 8) = minion_1
 (54, 16) = minion_1
 (54, 24) = minion_1
 (54, 32) = minion_1
+(54, 40) = minion_1
+
+(28, 32) = minion_1
+(28, 40) = minion_1
+(28, 48) = minion_1
+(28, 56) = minion_1
 
 [section]
 id = #1
