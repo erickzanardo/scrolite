@@ -3,9 +3,11 @@ import 'package:flame/game.dart';
 abstract class GameObject {
   GameObject({
     required this.controller,
+    this.tag,
     this.hitbox,
   });
 
+  final String? tag;
   final String controller;
   final (int, int, int, int)? hitbox;
 
@@ -68,12 +70,15 @@ abstract class GameObject {
             }
           }
 
+          final tag = properties['tag'];
+
           objectMap[name] = SpriteGameObject(
             spritePath: spritePath,
             srcPosition: srcPosition,
             srcSize: srcSize,
             controller: controller,
             hitbox: hitbox,
+            tag: tag,
           );
         }
       }
@@ -90,6 +95,7 @@ class SpriteGameObject extends GameObject {
     required this.srcSize,
     required super.controller,
     super.hitbox,
+    super.tag,
   });
 
   final String spritePath;

@@ -122,6 +122,7 @@ class ScroliteGame extends FlameGame {
         ), // Start above the screen
         size: gameObject.srcSize,
         sprite: spriteComponent,
+        gameObject: gameObject,
         controller: controller,
         children: [
           spriteComponent,

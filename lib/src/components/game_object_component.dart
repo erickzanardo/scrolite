@@ -1,16 +1,19 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:scrolite/scrolite.dart';
 
 class GameObjectComponent extends PositionComponent with CollisionCallbacks {
   GameObjectComponent({
     required this.sprite,
     required this.controller,
+    required this.gameObject,
     super.position,
     super.size,
     super.anchor,
     super.children,
   });
 
+  final GameObject gameObject;
   final PositionComponent sprite;
   final Component controller;
 
