@@ -112,14 +112,23 @@ class ScroliteGame extends FlameGame {
     final spriteComponent = SpriteComponent(
       sprite: sprite,
       size: gameObject.srcSize,
-      anchor: Anchor.topLeft,
-      position: Vector2(x, -gameObject.srcSize.y / 2), // Start above the screen
-      children: [
-        controller,
-        ?hitbox,
-      ],
     );
 
-    world.add(spriteComponent);
+    world.add(
+      GameObjectComponent(
+        position: Vector2(
+          x,
+          -gameObject.srcSize.y / 2,
+        ), // Start above the screen
+        size: gameObject.srcSize,
+        sprite: spriteComponent,
+        controller: controller,
+        children: [
+          spriteComponent,
+          controller,
+          ?hitbox,
+        ],
+      ),
+    );
   }
 }

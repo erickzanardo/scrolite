@@ -20,7 +20,7 @@ void main() async {
       game: MyGame(
         stage: stage,
         objectsMapping: objectsMapping,
-        controllersMapping: {'scrollAndShoot': ScrollAndShoot.new},
+        controllersMapping: {'minion_1': Mininon1Controller.new},
         resolution: resolution,
       ),
     ),

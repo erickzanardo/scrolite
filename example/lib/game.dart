@@ -3,7 +3,7 @@ import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:scrolite/scrolite.dart';
 
-class MyGame extends ScroliteGame {
+class MyGame extends ScroliteGame with HasCollisionDetection {
   MyGame({
     required super.stage,
     required super.objectsMapping,
