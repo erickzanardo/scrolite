@@ -16,6 +16,9 @@
   ],
   "useGitignore": true,
   "words": [
-    "scrolite"
+    "scrolite",
+    "Shmup",
+    "hitbox",
+    "hitboxes"
   ]
 }
