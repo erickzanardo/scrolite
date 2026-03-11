@@ -124,11 +124,7 @@ class ScroliteGame extends FlameGame {
         sprite: spriteComponent,
         gameObject: gameObject,
         controller: controller,
-        children: [
-          spriteComponent,
-          controller,
-          ?hitbox,
-        ],
+        children: [spriteComponent, controller, ?hitbox],
       ),
     );
   }

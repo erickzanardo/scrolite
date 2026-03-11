@@ -2,11 +2,7 @@ import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 
 abstract class Section {
-  const Section({
-    required this.id,
-    required this.width,
-    required this.height,
-  });
+  const Section({required this.id, required this.width, required this.height});
 
   final String id;
   final double width;

@@ -1,11 +1,7 @@
 import 'package:flame/game.dart';
 
 abstract class GameObject {
-  GameObject({
-    required this.controller,
-    this.tag,
-    this.hitbox,
-  });
+  GameObject({required this.controller, this.tag, this.hitbox});
 
   final String? tag;
   final String controller;

@@ -5,10 +5,7 @@ import 'package:scrolite/scrolite.dart';
 
 class SectionComponent extends PositionComponent
     with HasGameReference<ScroliteGame> {
-  SectionComponent({
-    required this.section,
-    this.first = false,
-  });
+  SectionComponent({required this.section, this.first = false});
 
   final Section section;
   final bool first;
@@ -46,10 +43,7 @@ class SectionComponent extends PositionComponent
 
   void _loadNext() {
     game.sectionIndex++;
-    final idx = math.min(
-      game.sectionIndex,
-      game.stage.sections.length - 1,
-    );
+    final idx = math.min(game.sectionIndex, game.stage.sections.length - 1);
     final nextSection = game.stage.sections[idx];
     final component = SectionComponent(section: nextSection)
       ..y = -nextSection.height;
